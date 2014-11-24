@@ -60,11 +60,18 @@ server.post('/login', function(req, res, next) {
     else if (req.body.username && req.body.password) {
         model.oauth2.user.fetchByUsername(req, req.body.username, function(err, user) {
             if (err) next(err);
-            else if (!user || !model.oauth2.user.checkPassword(req, user, req.body.password)) res.redirect(req.url);
+            else if (!user )
+                res.redirect(req.url);
             else {
-                req.session.user = user;
-                req.session.authorized = true;
-                res.redirect(backUrl);
+                model.oauth2.user.checkPassword(req, user, req.body.password, function (result) {
+                    if (!result)
+                      res.redirect(req.url);
+                    else {
+                      req.session.user = user;
+                      req.session.authorized = true;
+                      res.redirect(backUrl);
+                    }
+                });
             }
         });
     }

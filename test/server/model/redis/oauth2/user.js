@@ -40,10 +40,10 @@ module.exports.fetchByUsername = function(req, username, cb) {
     });
 };
 
-module.exports.checkPassword = function(req, user, password) {
-    return (user.password == password);
+module.exports.checkPassword = function(req, user, password, cb) {
+    cb((user.password == password));
 };
 
 module.exports.fetchFromRequest = function(req) {
-    return req.session.user;
+    cb(null, req.session.user);
 };
