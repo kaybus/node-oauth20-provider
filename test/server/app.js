@@ -58,9 +58,9 @@ server.post('/login', function(req, res, next) {
     if (req.session.authorized) res.redirect(backUrl);
     // Trying to log in
     else if (req.body.username && req.body.password) {
-        model.oauth2.user.fetchByUsername(req.body.username, function(err, user) {
+        model.oauth2.user.fetchByUsername(req, req.body.username, function(err, user) {
             if (err) next(err);
-            else if (!user || !model.oauth2.user.checkPassword(user, req.body.password)) res.redirect(req.url);
+            else if (!user || !model.oauth2.user.checkPassword(req, user, req.body.password)) res.redirect(req.url);
             else {
                 req.session.user = user;
                 req.session.authorized = true;
