@@ -24,3 +24,7 @@ module.exports.save = function(req, token, userId, clientId, scope, cb) {
     refreshTokens.push(obj);
     cb(null, obj);
 };
+
+module.exports.refresh = function(req, refreshToken, userId, clientId, cb) {
+    cb(null);
+};

@@ -15,6 +15,7 @@ module.exports = function(type) {
     obj.model.client.getRedirectUri = model.client.getRedirectUri;
     obj.model.client.fetchById = model.client.fetchById;
     obj.model.client.checkSecret = model.client.checkSecret;
+    obj.model.client.needDecisionConfirmation = model.client.needDecisionConfirmation;
 
     // User
     obj.model.user.getId = model.user.getId;
@@ -29,11 +30,13 @@ module.exports = function(type) {
     obj.model.refreshToken.fetchByToken = model.refreshToken.fetchByToken;
     obj.model.refreshToken.removeByUserIdClientId = model.refreshToken.removeByUserIdClientId;
     obj.model.refreshToken.save = model.refreshToken.save;
+    obj.model.refreshToken.refresh = model.refreshToken.refresh;
 
     // Access token
     obj.model.accessToken.getToken = model.accessToken.getToken;
     obj.model.accessToken.fetchByToken = model.accessToken.fetchByToken;
     obj.model.accessToken.checkTTL = model.accessToken.checkTTL;
+    obj.model.accessToken.getTTL = model.accessToken.getTTL;
     obj.model.accessToken.fetchByUserIdClientId = model.accessToken.fetchByUserIdClientId;
     obj.model.accessToken.save = model.accessToken.save;
 
@@ -51,7 +54,7 @@ module.exports = function(type) {
         var html = [
             'Currently your are logged with id = ' + req.oauth2.model.user.getId(user),
             'Client with id ' + req.oauth2.model.client.getId(client) + ' asks for access',
-            'Scope asked ' + scope.join(),
+            /*'Scope asked ' + scope.join(),*/
             '<form method="POST">',
             '<input type="hidden" name="decision" value="1" />',
             '<input type="submit" value="Authorize" />',

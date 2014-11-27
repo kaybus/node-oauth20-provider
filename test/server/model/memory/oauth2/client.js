@@ -18,3 +18,7 @@ module.exports.fetchById = function(clientId, cb) {
 module.exports.checkSecret = function(client, secret) {
     return (client.secret == secret);
 };
+
+module.exports.needDecisionConfirmation = function(client, secret) {
+  return true;
+};
