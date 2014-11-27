@@ -12,7 +12,7 @@ module.exports.getUserId = function(refreshToken) {
     return refreshToken.userId;
 };
 
-module.exports.save = function(token, userId, clientId, scope, cb) {
+module.exports.save = function(req, token, userId, clientId, scope, cb) {
     var obj = {token: token, userId: userId, clientId: clientId, scope: scope};
     redis.set(util.format(KEY.TOKEN, token), JSON.stringify(obj), function(err) {
         if (err) cb(err);

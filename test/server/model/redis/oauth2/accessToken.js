@@ -14,7 +14,7 @@ module.exports.getToken = function(accessToken) {
     return accessToken.token;
 };
 
-module.exports.save = function(token, userId, clientId, scope, ttl, cb) {
+module.exports.save = function(req, token, userId, clientId, scope, ttl, cb) {
     var ttl = new Date().getTime() + ttl * 1000;
     var obj = {token: token, userId: userId, clientId: clientId, scope: scope};
     redis.setex(util.format(KEY.ACCESS_TOKEN, token), ttl, JSON.stringify(obj), cb);
