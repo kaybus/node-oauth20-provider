@@ -28,3 +28,6 @@ module.exports.fetchByUserIdClientId = function(userId, clientId, cb) {
     cb();
 };
 
+module.exports.getTTL = function(req, client, cb) {
+  cb(null, 3600);
+};
