@@ -19,7 +19,7 @@ module.exports.removeByUserIdClientId = function(userId, clientId, cb) {
     cb();
 };
 
-module.exports.save = function(token, userId, clientId, scope, cb) {
+module.exports.save = function(req, token, userId, clientId, scope, cb) {
     var obj = {token: token, userId: userId, clientId: clientId, scope: scope};
     refreshTokens.push(obj);
     cb(null, obj);

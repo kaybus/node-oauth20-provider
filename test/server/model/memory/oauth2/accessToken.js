@@ -4,7 +4,7 @@ module.exports.getToken = function(accessToken) {
     return accessToken.token;
 };
 
-module.exports.save = function(token, userId, clientId, scope, ttl, cb) {
+module.exports.save = function(req, token, userId, clientId, scope, ttl, cb) {
     var obj = {token: token, userId: userId, clientId: clientId, scope: scope, ttl: new Date().getTime() + ttl * 1000};
     accessTokens.push(obj);
     cb(null, obj);
