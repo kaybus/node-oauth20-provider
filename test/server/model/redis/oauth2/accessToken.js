@@ -50,7 +50,7 @@ module.exports.fetchByUserIdClientId = function(userId, clientId, cb) {
     });
 };
 
-module.exports.getTTL = function(req, client, cb) {
+module.exports.getTTL = function(req, user, client, cb) {
   cb(null, 3600);
 };
 
