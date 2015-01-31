@@ -11,14 +11,6 @@ module.exports.fetchByToken = function(token, cb) {
     cb(null, null);
 };
 
-module.exports.removeByUserIdClientId = function(userId, clientId, cb) {
-    for (var i in refreshTokens) {
-        if (refreshTokens[i].userId == userId && refreshTokens[i].clientId == clientId)
-            refreshTokens.splice(i, 1);
-    };
-    cb();
-};
-
 module.exports.save = function(req, token, userId, clientId, scope, cb) {
     var obj = {token: token, userId: userId, clientId: clientId, scope: scope};
     refreshTokens.push(obj);

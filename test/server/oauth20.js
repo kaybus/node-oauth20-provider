@@ -28,7 +28,6 @@ module.exports = function(type) {
     obj.model.refreshToken.getUserId = model.refreshToken.getUserId;
     obj.model.refreshToken.getClientId = model.refreshToken.getUserId;
     obj.model.refreshToken.fetchByToken = model.refreshToken.fetchByToken;
-    obj.model.refreshToken.removeByUserIdClientId = model.refreshToken.removeByUserIdClientId;
     obj.model.refreshToken.save = model.refreshToken.save;
     obj.model.refreshToken.refresh = model.refreshToken.refresh;
 
@@ -37,7 +36,6 @@ module.exports = function(type) {
     obj.model.accessToken.fetchByToken = model.accessToken.fetchByToken;
     obj.model.accessToken.checkTTL = model.accessToken.checkTTL;
     obj.model.accessToken.getTTL = model.accessToken.getTTL;
-    obj.model.accessToken.fetchByUserIdClientId = model.accessToken.fetchByUserIdClientId;
     obj.model.accessToken.save = model.accessToken.save;
 
     // Code
