@@ -4,8 +4,7 @@ var
 
 // SOME KEY CONSTANTS
 var KEY = {
-    ACCESS_TOKEN:      'accessToken:%s',
-    USER_CLIENT_TOKEN: 'userId:%s:clientId:%s'
+    ACCESS_TOKEN:      'accessToken:%s'
 };
 
 module.exports.KEY = KEY;
@@ -18,7 +17,6 @@ module.exports.save = function(req, token, userId, clientId, scope, ttl, cb) {
     var ttl = new Date().getTime() + ttl * 1000;
     var obj = {token: token, userId: userId, clientId: clientId, scope: scope};
     redis.setex(util.format(KEY.ACCESS_TOKEN, token), ttl, JSON.stringify(obj), cb);
-    redis.setex(util.format(KEY.USER_CLIENT_TOKEN, userId, clientId), ttl, token, function() {});
 };
 
 var fetchByToken = function(token, cb) {
@@ -41,13 +39,6 @@ module.exports.fetchByToken = fetchByToken;
 // No need to check expiry due to Redis TTL
 module.exports.checkTTL = function(accessToken) {
     return true;
-};
-
-module.exports.fetchByUserIdClientId = function(userId, clientId, cb) {
-    redis.get(util.format(KEY.USER_CLIENT_TOKEN, userId, clientId), function(err, token) {
-        if (err) cb(err);
-        else fetchByToken(token, cb);
-    });
 };
 
 module.exports.getTTL = function(req, user, client, cb) {
