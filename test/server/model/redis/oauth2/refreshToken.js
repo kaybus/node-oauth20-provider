@@ -35,6 +35,11 @@ module.exports.fetchByToken = function(token, cb) {
     });
 };
 
+// @todo: remove old refreshTokens
+module.exports.removeByUserIdClientId = function(userId, clientId, cb) {
+    cb();
+};
+
 module.exports.refresh = function(req, refreshToken, userId, clientId, cb) {
   cb(null);
 };

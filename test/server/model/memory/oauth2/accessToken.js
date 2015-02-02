@@ -21,6 +21,13 @@ module.exports.checkTTL = function(accessToken) {
     return (accessToken.ttl > new Date().getTime());
 };
 
+module.exports.fetchByUserIdClientId = function(userId, clientId, cb) {
+    for (var i in accessTokens) {
+        if (accessTokens[i].userId == userId && accessTokens[i].clientId == clientId) return cb(null, accessTokens[i]);
+    };
+    cb();
+};
+
 module.exports.getTTL = function(req, user, client, cb) {
   cb(null, 3600);
 };
