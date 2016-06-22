@@ -36,6 +36,10 @@ module.exports.checkSecret = function(client, secret) {
     return (client.secret == secret);
 };
 
+exports.checkTenantUrl = function(req, obj) {
+  return [req.hostname, "all"].indexOf(obj.tenant_url) > -1;
+};
+
 module.exports.needDecisionConfirmation = function(client, secret) {
   return true;
 };
