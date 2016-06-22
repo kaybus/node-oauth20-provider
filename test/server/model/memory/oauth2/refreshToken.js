@@ -17,6 +17,10 @@ module.exports.save = function(req, token, userId, clientId, scope, cb) {
     cb(null, obj);
 };
 
+module.exports.getScope = function(refreshToken) {
+    return [];
+};
+
 module.exports.refresh = function(req, refreshToken, userId, clientId, cb) {
     cb(null);
 };

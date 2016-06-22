@@ -9,6 +9,14 @@ describe('Password Grant Type ',function() {
         refreshToken,
         accessToken;
 
+    it('POST /token with grant_type="password" should throw error when tenant_url dont match', function(done) {
+        request(app)
+            .post('/token')
+            .set('Authorization', 'Basic ' + new Buffer(data.clients[2].id + ':' + data.clients[2].secret, 'ascii').toString('base64'))
+            .send({grant_type: 'password', username: data.users[0].username, password: data.users[0].password})
+            .expect(401, '{"error":"invalid_client","error_description":"Invalid client"}', done);
+    });
+
     it('POST /token with grant_type="password" expect token', function(done) {
         request(app)
             .post('/token')
@@ -23,7 +31,7 @@ describe('Password Grant Type ',function() {
             });
     });
 
-    it('POST /token with grant_type="refresh_token" expect same accessToken', function(done) {
+    it('POST /token with grant_type="refresh_token" expect new accessToken always', function(done) {
         request(app)
             .post('/token')
             .set('Authorization', 'Basic ' + new Buffer(data.clients[0].id + ':' + data.clients[0].secret, 'ascii').toString('base64'))
@@ -31,7 +39,7 @@ describe('Password Grant Type ',function() {
             .expect(200, /access_token/)
             .end(function(err, res) {
                 if (err) return done(err);
-                if (accessToken != res.body.access_token) return done(new Error('AccessToken strings do not match'));
+                if (accessToken == res.body.access_token) return done(new Error('AccessToken should be new always'));
                 done();
             });
     });

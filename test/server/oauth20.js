@@ -15,6 +15,7 @@ module.exports = function(type) {
     obj.model.client.getRedirectUri = model.client.getRedirectUri;
     obj.model.client.fetchById = model.client.fetchById;
     obj.model.client.checkSecret = model.client.checkSecret;
+    obj.model.client.checkTenantUrl = model.client.checkTenantUrl;
     obj.model.client.needDecisionConfirmation = model.client.needDecisionConfirmation;
 
     // User
@@ -29,6 +30,7 @@ module.exports = function(type) {
     obj.model.refreshToken.getClientId = model.refreshToken.getUserId;
     obj.model.refreshToken.fetchByToken = model.refreshToken.fetchByToken;
     obj.model.refreshToken.save = model.refreshToken.save;
+    obj.model.refreshToken.getScope = model.refreshToken.getScope;
     obj.model.refreshToken.refresh = model.refreshToken.refresh;
 
     // Access token
